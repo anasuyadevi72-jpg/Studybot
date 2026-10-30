@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STUDYBOT — Smart Student Companion</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ================= AUTH ================= -->
+  <section id="authScreen" class="auth-screen">
+
+    <div class="auth-decoration decoration-one"></div>
+    <div class="auth-decoration decoration-two"></div>
+
+    <div class="auth-card">
+
+      <div class="brand auth-brand">
+        <div class="brand-icon">S</div>
+        <div>
+          <h1>STUDYBOT</h1>
+          <p>Smart Student Companion</p>
+        </div>
+      </div>
+
+      <!-- LOGIN -->
+      <div id="loginPanel" class="auth-panel">
+
+        <span class="eyebrow">WELCOME BACK</span>
+
+        <h2>Take control of your day.</h2>
+        <p class="auth-description">
+          Stop wondering what to do next. Let STUDYBOT organize it.
+        </p>
+
+        <form id="loginForm">
+
+          <label>Email</label>
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="you@example.com"
+            required
+          />
+
+          <label>Password</label>
+
+          <div class="password-box">
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Enter password"
+              required
+            />
+            <button type="button" class="password-toggle" data-target="loginPassword">
+              Show
+            </button>
+          </div>
+
+          <button class="primary-btn full-btn" type="submit">
+            Login →
+          </button>
+
+        </form>
+
+        <p class="switch-auth">
+          Don't have an account?
+          <button id="showSignup" class="text-btn">Create one</button>
+        </p>
+
+      </div>
+
+
+      <!-- SIGNUP -->
+      <div id="signupPanel" class="auth-panel hidden">
+
+        <span class="eyebrow">GET STARTED</span>
+
+        <h2>Build a better routine.</h2>
+
+        <p class="auth-description">
+          Create your student profile and start planning smarter.
+        </p>
+
+        <form id="signupForm">
+
+          <label>Your name</label>
+          <input
+            type="text"
+            id="signupName"
+            placeholder="Enter your name"
+            required
+          />
+
+          <label>Email</label>
+          <input
+            type="email"
+            id="signupEmail"
+            placeholder="you@example.com"
+            required
+          />
+
+          <label>Password</label>
+
+          <div class="password-box">
+            <input
+              type="password"
+              id="signupPassword"
+              placeholder="Minimum 6 characters"
+              required
+            />
+            <button type="button" class="password-toggle" data-target="signupPassword">
+              Show
+            </button>
+          </div>
+
+          <button class="primary-btn full-btn" type="submit">
+            Create Account →
+          </button>
+
+        </form>
+
+        <p class="switch-auth">
+          Already have an account?
+          <button id="showLogin" class="text-btn">Login</button>
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= APP ================= -->
+
+  <section id="appScreen" class="app-screen hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="brand">
+        <div class="brand-icon">S</div>
+
+        <div>
+          <h1>STUDYBOT</h1>
+          <p>Student Companion</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+
+        <button class="nav-item active" data-section="dashboard">
+          <span>⌂</span>
+          Dashboard
+        </button>
+
+        <button class="nav-item" data-section="planner">
+          <span>✦</span>
+          Smart Planner
+        </button>
+
+        <button class="nav-item" data-section="timetable">
+          <span>▦</span>
+          Timetable
+        </button>
+
+        <button class="nav-item" data-section="tasks">
+          <span>✓</span>
+          Tasks
+        </button>
+
+        <button class="nav-item" data-section="focus">
+          <span>◉</span>
+          Focus Mode
+        </button>
+
+        <button class="nav-item" data-section="progress">
+          <span>↗</span>
+          Progress
+        </button>
+
+        <button class="nav-item" data-section="aptitude">
+          <span>🎓</span>
+          Aptitude Academy
+        </button>
+
+        <button class="nav-item" data-section="profile">
+          <span>◎</span>
+          Profile
+        </button>
+
+        <button class="nav-item" data-section="settings">
+          <span>⚙</span>
+          Settings
+        </button>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <div class="mini-profile">
+          <div id="sidebarAvatar" class="avatar">A</div>
+
+          <div>
+            <strong id="sidebarName">Student</strong>
+            <span id="sidebarGoal">Build consistency</span>
+          </div>
+        </div>
+
+        <button id="logoutBtn" class="logout-btn">
+          Logout
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <!-- MOBILE TOP -->
+      <header class="mobile-header">
+
+        <div class="brand">
+          <div class="brand-icon">S</div>
+
+          <div>
+            <h1>STUDYBOT</h1>
+          </div>
+        </div>
+
+        <button id="mobileMenuBtn" class="icon-btn">
+          ☰
+        </button>
+
+      </header>
+
+
+      <!-- ================= DASHBOARD ================= -->
+
+      <section id="dashboardSection" class="page-section active-section">
+
+        <div class="topbar">
+
+          <div>
+            <span class="eyebrow">YOUR DAY</span>
+
+            <h2 id="dashboardGreeting">
+              Good morning.
+            </h2>
+
+            <p id="currentDate">
+              Let's make today count.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <div id="aiStatusBadge" class="cloud-status-badge offline" title="AI Tutor Status">○ AI Offline</div>
+            <div id="cloudSyncStatus" class="cloud-status-badge local">○ Local Mode</div>
+            <button id="generateDashboardBtn" class="primary-btn">
+              Build My Day ✦
+            </button>
+          </div>
+
+        </div>
+
+
+        <!-- HERO -->
+
+        <div class="hero-card">
+
+          <div class="hero-content">
+
+            <span class="eyebrow">TODAY'S MISSION</span>
+
+            <h1 id="missionTitle">
+              Make progress, not a perfect timetable.
+            </h1>
+
+            <p id="missionText">
+              Add your tasks and STUDYBOT will decide what deserves your attention first.
+            </p>
+
+            <div class="mission-actions">
+
+              <button id="doNowBtn" class="primary-btn">
+                DO THIS NOW →
+              </button>
+
+              <button id="rescueBtn" class="secondary-btn">
+                Rescue Mode
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="hero-orbit">
+            <div class="orbit-circle">
+              <strong id="todayPercent">0%</strong>
+              <span>complete</span>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <span>Today's Tasks</span>
+            <strong id="todayTaskCount">0</strong>
+            <small>planned for today</small>
+          </div>
+
+          <div class="stat-card">
+            <span>Completed</span>
+            <strong id="todayCompletedCount">0</strong>
+            <small>keep going</small>
+          </div>
+
+          <div class="stat-card">
+            <span>Focus Time</span>
+            <strong id="focusMinutes">0m</strong>
+            <small>deep work today</small>
+          </div>
+
+          <div class="stat-card">
+            <span>Streak</span>
+            <strong id="streakCount">0</strong>
+            <small>days consistent</small>
+          </div>
+
+        </div>
+
+
+        <!-- DASHBOARD GRID -->
+
+        <div class="dashboard-grid">
+
+          <div class="panel next-action-panel">
+
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">ONE THING</span>
+                <h3>Do this now</h3>
+              </div>
+
+              <span class="live-dot"></span>
+            </div>
+
+            <div id="nextActionBox" class="next-action-box">
+
+              <div class="next-action-icon">
+                →
+              </div>
+
+              <div>
+                <span id="nextActionCategory">No task selected</span>
+                <h4 id="nextActionTitle">
+                  Add your first task
+                </h4>
+
+                <p id="nextActionMeta">
+                  Your next action will appear here.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="panel schedule-panel">
+
+            <div class="panel-header">
+
+              <div>
+                <span class="eyebrow">TODAY</span>
+                <h3>Quick Schedule</h3>
+              </div>
+
+              <button class="small-btn" data-section-target="timetable">
+                View all
+              </button>
+
+            </div>
+
+            <div id="quickScheduleList" class="schedule-list">
+              <div class="empty-state">
+                No schedule yet.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= PLANNER ================= -->
+
+      <section id="plannerSection" class="page-section">
+
+        <div class="topbar">
+
+          <div>
+            <span class="eyebrow">SMART PLANNER</span>
+            <h2>Give me your workload.</h2>
+
+            <p>
+              I'll help turn it into a realistic plan.
+            </p>
+          </div>
+
+          <button id="generatePlanBtn" class="primary-btn">
+            Generate Timetable ✦
+          </button>
+
+        </div>
+
+
+        <div class="planner-layout">
+
+          <div class="panel">
+
+            <div class="panel-header">
+
+              <div>
+                <span class="eyebrow">STEP 01</span>
+                <h3>Add a task</h3>
+              </div>
+
+            </div>
+
+            <form id="taskForm" class="task-form">
+
+              <label>Task name</label>
+
+              <input
+                id="taskTitle"
+                type="text"
+                placeholder="Example: Complete ML assignment"
+                required
+              />
+
+              <div class="form-grid">
+
+                <div>
+                  <label>Category</label>
+
+                  <select id="taskCategory">
+
+                    <option value="Study">Study</option>
+                    <option value="Assignment">Assignment</option>
+                    <option value="Revision">Revision</option>
+                    <option value="Project">Project</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Fitness">Fitness</option>
+
+                  </select>
+                </div>
+
+                <div>
+                  <label>Duration</label>
+
+                  <select id="taskDuration">
+
+                    <option value="25">25 min</option>
+                    <option value="45">45 min</option>
+                    <option value="60">1 hour</option>
+                    <option value="90">1.5 hours</option>
+                    <option value="120">2 hours</option>
+
+                  </select>
+                </div>
+
+              </div>
+
+
+              <div class="form-grid">
+
+                <div>
+                  <label>Deadline</label>
+
+                  <input
+                    id="taskDeadline"
+                    type="date"
+                  />
+                </div>
+
+                <div>
+                  <label>Energy</label>
+
+                  <select id="taskEnergy">
+
+                    <option value="high">High</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="low">Low</option>
+
+                  </select>
+
+                </div>
+
+              </div>
+
+
+              <label class="check-row">
+
+                <input
+                  type="checkbox"
+                  id="taskImportant"
+                />
+
+                <span>Important task</span>
+
+              </label>
+
+
+              <button class="primary-btn full-btn" type="submit">
+                Add Task +
+              </button>
+
+            </form>
+
+          </div>
+
+
+          <div class="panel">
+
+            <div class="panel-header">
+
+              <div>
+                <span class="eyebrow">STEP 02</span>
+                <h3>Pending Work</h3>
+              </div>
+
+              <span id="pendingCount" class="count-pill">
+                0
+              </span>
+
+            </div>
+
+            <div id="plannerTaskList" class="planner-task-list">
+
+              <div class="empty-state">
+                Add tasks to start building your day.
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= TIMETABLE ================= -->
+
+      <section id="timetableSection" class="page-section">
+
+        <div class="topbar">
+
+          <div>
+            <span class="eyebrow">YOUR PLAN</span>
+            <h2>Timetable</h2>
+            <p>Fixed commitments + your most important work.</p>
+          </div>
+
+          <button id="regenerateBtn" class="primary-btn">
+            Rebuild Day
+          </button>
+
+        </div>
+
+
+        <div class="day-switcher">
+
+          <button class="day-tab active" data-day="today">
+            Today
+          </button>
+
+          <button class="day-tab" data-day="tomorrow">
+            Tomorrow
+          </button>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div id="timetableList" class="timetable-list">
+
+            <div class="empty-state">
+              Generate your timetable first.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="panel add-block-panel">
+
+          <div class="panel-header">
+
+            <div>
+              <span class="eyebrow">MANUAL</span>
+              <h3>Add a schedule block</h3>
+            </div>
+
+          </div>
+
+          <form id="scheduleForm" class="form-grid schedule-form">
+
+            <div>
+              <label>Title</label>
+
+              <input
+                id="scheduleTitle"
+                type="text"
+                placeholder="Example: Library"
+                required
+              />
+            </div>
+
+            <div>
+              <label>Time</label>
+
+              <input
+                id="scheduleTime"
+                type="time"
+                required
+              />
+            </div>
+
+            <button class="primary-btn" type="submit">
+              Add
+            </button>
+
+          </form>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= TASKS ================= -->
+
+      <section id="tasksSection" class="page-section">
+
+        <div class="topbar">
+
+          <div>
+            <span class="eyebrow">TASK CENTER</span>
+            <h2>Everything you need to do.</h2>
+            <p>Finish small things consistently.</p>
+          </div>
+
+          <button class="primary-btn" data-section-target="planner">
+            Add Task +
+          </button>
+
+        </div>
+
+
+        <div class="task-filters">
+
+          <button class="filter-btn active" data-filter="all">
+            All
+          </button>
+
+          <button class="filter-btn" data-filter="pending">
+            Pending
+          </button>
+
+          <button class="filter-btn" data-filter="overdue">
+            Overdue
+          </button>
+
+          <button class="filter-btn" data-filter="completed">
+            Completed
+          </button>
+
+        </div>
+
+
+        <div id="allTasksList" class="tasks-list">
+
+          <div class="empty-state">
+            No tasks yet.
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= FOCUS ================= -->
+
+      <section id="focusSection" class="page-section">
+
+        <div class="topbar">
+
+          <div>
+            <span class="eyebrow">FOCUS MODE</span>
+            <h2>One task. No excuses.</h2>
+            <p>Put your phone away and work for 25 minutes.</p>
+          </div>
+
+        </div>
+
+
+        <div class="focus-layout">
+
+          <div class="focus-card">
+
+            <span class="eyebrow">CURRENT TASK</span>
+
+            <h2 id="focusTaskTitle">
+              Choose a task
+            </h2>
+
+            <div class="timer">
+
+              <span id="timerDisplay">
+                25:00
+              </span>
+
+            </div>
+
+            <div class="timer-actions">
+
+              <button id="startTimerBtn" class="primary-btn">
+                Start Focus
+              </button>
+
+              <button id="resetTimerBtn" class="secondary-btn">
+                Reset
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="panel">
+
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">FOCUS RULE</span>
+                <h3>During these 25 minutes</h3>
+              </div>
+            </div>
+
+            <ul class="focus-rules">
+
+              <li>Put your phone away.</li>
+              <li>Do only the selected task.</li>
+              <li>Don't switch between subjects.</li>
+              <li>Take a short break after finishing.</li>
+              <li>Come back for another session.</li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= PROGRESS ================= -->
+
+      <section id="progressSection" class="page-section">
+
+        <div class="topbar">
+
+          <div>
+            <span class="eyebrow">PROGRESS</span>
+            <h2>Consistency beats motivation.</h2>
+            <p>See whether your actions are actually changing.</p>
+          </div>
+
+        </div>
+
+
+        <div class="progress-overview">
+
+          <div class="panel progress-main">
+
+            <span class="eyebrow">TODAY</span>
+
+            <div class="big-progress-number">
+              <span id="progressPercent">0%</span>
+            </div>
+
+            <div class="progress-track">
+              <div id="progressBar" class="progress-fill"></div>
+            </div>
+
+            <p id="progressMessage">
+              Start with one task.
+            </p>
+
+          </div>
+
+
+          <div class="panel">
+
+            <span class="eyebrow">STREAK</span>
+
+            <h2 id="progressStreak">
+              0 days
+            </h2>
+
+            <p>
+              Keep showing up.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="panel-header">
+
+            <div>
+              <span class="eyebrow">LAST 7 DAYS</span>
+              <h3>Your activity</h3>
+            </div>
+
+          </div>
+
+          <div id="weeklyChart" class="weekly-chart"></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= PROFILE ================= -->
+
+      <section id="profileSection" class="page-section">
+
+        <div class="topbar">
+
+          <div>
+            <span class="eyebrow">PROFILE</span>
+            <h2>Build a routine around your real life.</h2>
+            <p>Your commitments help STUDYBOT plan realistically.</p>
+          </div>
+
+        </div>
+
+
+        <div class="profile-layout">
+
+          <div class="panel profile-card">
+
+            <div class="profile-picture-wrapper">
+
+              <div id="profileAvatar" class="profile-avatar">
+                A
+              </div>
+
+              <label class="upload-picture">
+                Change photo
+                <input
+                  type="file"
+                  id="profilePictureInput"
+                  accept="image/*"
+                  hidden
+                />
+              </label>
+
+            </div>
+
+
+            <div class="profile-info">
+
+              <label>Name</label>
+
+              <input
+                id="profileName"
+                type="text"
+                placeholder="Your name"
+              />
+
+              <label>Main goal</label>
+
+              <input
+                id="profileGoal"
+                type="text"
+                placeholder="Example: Become consistent"
+              />
+
+              <div class="form-grid">
+
+                <div>
+
+                  <label>Day starts</label>
+
+                  <input
+                    id="dayStart"
+                    type="time"
+                    value="06:00"
+                  />
+
+                </div>
+
+                <div>
+
+                  <label>Day ends</label>
+
+                  <input
+                    id="dayEnd"
+                    type="time"
+                    value="22:30"
+                  />
+
+                </div>
+
+              </div>
+
+              <button id="saveProfileBtn" class="primary-btn full-btn">
+                Save Profile
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="panel">
+
+            <div class="panel-header">
+
+              <div>
+                <span class="eyebrow">FIXED COMMITMENTS</span>
+                <h3>Your routine</h3>
+              </div>
+
+            </div>
+
+
+            <label class="setting-toggle">
+
+              <span>
+                <strong>College</strong>
+                <small>Monday–Friday · 8 AM–4 PM</small>
+              </span>
+
+              <input type="checkbox" id="collegeToggle" checked />
+
+            </label>
+
+
+            <label class="setting-toggle">
+
+              <span>
+                <strong>Basketball</strong>
+                <small>Tuesday & Thursday · 4–5 PM</small>
+              </span>
+
+              <input type="checkbox" id="basketballToggle" />
+
+            </label>
+
+
+            <label class="setting-toggle">
+
+              <span>
+                <strong>NCC</strong>
+                <small>Wednesday & Saturday · 4–7 PM</small>
+              </span>
+
+              <input type="checkbox" id="nccToggle" />
+
+            </label>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= APTITUDE ACADEMY ================= -->
+
+      <section id="aptitudeSection" class="page-section">
+
+        <div class="topbar">
+          <div>
+            <span class="eyebrow">COMPETITIVE EXAM PREPARATION & REASONING</span>
+            <h2>Aptitude Academy</h2>
+            <p>Master Quantitative Aptitude, Logical Reasoning & Verbal Ability with shortcuts, verified questions, and timed mock tests.</p>
+          </div>
+          <div class="topbar-actions">
+            <span class="exam-target-pill" id="coachCountdownBadge">Target Exam</span>
+          </div>
+        </div>
+
+        <!-- Aptitude Sub-Navigation Tabs -->
+        <div class="aptitude-nav-tabs">
+          <button type="button" class="aptitude-subtab-btn active" data-tab="learning">
+            <span>📚</span> Learning Paths
+          </button>
+          <button type="button" class="aptitude-subtab-btn" data-tab="practice">
+            <span>🎯</span> Practice Arena
+          </button>
+          <button type="button" class="aptitude-subtab-btn" data-tab="mock">
+            <span>⏱️</span> Timed Mock Tests
+          </button>
+          <button type="button" class="aptitude-subtab-btn" data-tab="performance">
+            <span>📊</span> My Performance & Coach
+          </button>
+          <button type="button" class="aptitude-subtab-btn" data-tab="mistakes">
+            <span>📝</span> Mistake Notebook & Bookmarks
+          </button>
+          <button type="button" class="aptitude-subtab-btn" data-tab="profiles">
+            <span>🏆</span> Exam Profiles
+          </button>
+        </div>
+
+        <!-- SUBVIEW 1: LEARNING PATHS -->
+        <div id="aptitudeTab_learning" class="aptitude-subview">
+          <div class="subview-header">
+            <div>
+              <h3>Structured Curriculum Modules</h3>
+              <p>Learn core concepts, essential formulas, shortcuts, and common traps before testing yourself.</p>
+            </div>
+          </div>
+          <div id="learningPathsGrid" class="learning-paths-grid"></div>
+        </div>
+
+        <!-- SUBVIEW 2: PRACTICE ARENA -->
+        <div id="aptitudeTab_practice" class="aptitude-subview hidden">
+          <div class="practice-toolbar">
+            <div class="filter-group">
+              <label>Subject:</label>
+              <select id="practiceSubjectFilter" class="select-control">
+                <option value="all">All Subjects</option>
+                <option value="Quantitative Aptitude">Quantitative Aptitude</option>
+                <option value="Logical Reasoning">Logical Reasoning</option>
+                <option value="Verbal Ability">Verbal Ability</option>
+                <option value="Specialized Modules">Specialized Modules</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Topic:</label>
+              <select id="practiceTopicFilter" class="select-control">
+                <option value="all">All Topics</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Difficulty:</label>
+              <select id="practiceDifficultyFilter" class="select-control">
+                <option value="all">All Difficulties</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="practiceQuestionCard" class="practice-card">
+            <div class="practice-card-topbar">
+              <div class="badge-cluster">
+                <span id="practiceQuestionCounter" class="q-counter">Question 1 of 10</span>
+                <span id="practiceQuestionSubject" class="subject-tag">Quantitative Aptitude</span>
+                <span id="practiceQuestionDifficulty" class="badge">Beginner</span>
+                <span id="practiceVerificationBadge" class="verified-badge official">✓ Verified Benchmark</span>
+              </div>
+              <button type="button" id="practiceBookmarkBtn" class="bookmark-btn">☆ Bookmark</button>
+            </div>
+
+            <div class="practice-question-body">
+              <h3 id="practiceQuestionText" class="practice-question-text">Loading question...</h3>
+            </div>
+
+            <div id="practiceOptionsList" class="practice-options-grid"></div>
+
+            <div class="practice-action-bar">
+              <button type="button" id="practiceCheckBtn" class="primary-btn" disabled>
+                Check Answer ✓
+              </button>
+              <button type="button" id="practiceNextBtn" class="primary-btn hidden">
+                Next Question →
+              </button>
+            </div>
+
+            <!-- Explanation Panel -->
+            <div id="practiceExplanationPanel" class="explanation-panel hidden">
+              <div id="practiceResultHeader" class="result-header"></div>
+              <div class="explanation-content">
+                <strong>Worked Step-by-Step Solution:</strong>
+                <p id="practiceExplanationText" class="explanation-text"></p>
+              </div>
+
+              <!-- AI Tutor Consultation Bar -->
+              <div class="ai-tutor-cta-bar">
+                <span class="ai-cta-label">🤖 Need more help? Ask STUDYBOT AI Tutor:</span>
+                <div class="ai-cta-buttons">
+                  <button type="button" id="aiTutorHintBtn" class="ai-action-btn">
+                    💡 Give Me a Hint
+                  </button>
+                  <button type="button" id="aiTutorMethodBtn" class="ai-action-btn">
+                    ⚡ Show Shortcut Method
+                  </button>
+                  <button type="button" id="aiTutorSimilarBtn" class="ai-action-btn">
+                    📝 Generate Similar Problem
+                  </button>
+                </div>
+              </div>
+
+              <!-- AI Tutor Response Drawer -->
+              <div id="practiceAITutorPanel" class="ai-tutor-drawer hidden">
+                <div id="practiceAITutorContent" class="ai-drawer-content"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="practiceEmptyState" class="empty-notice hidden">
+            <p>No questions matched your current filter. Please select "All Topics" or another filter criteria.</p>
+          </div>
+        </div>
+
+        <!-- SUBVIEW 3: TIMED MOCK TESTS -->
+        <div id="aptitudeTab_mock" class="aptitude-subview hidden">
+          <!-- Setup View -->
+          <div id="mockSetupView">
+            <div class="subview-header">
+              <div>
+                <h3>Select a Timed Mock Examination</h3>
+                <p>Simulate official exam patterns under real exam conditions with strict timer, sectional palette, and negative marking.</p>
+              </div>
+            </div>
+            <div class="mock-profiles-catalog">
+              <div class="mock-card">
+                <div class="mock-badge">IT Drives</div>
+                <h4>Campus Placements & IT Test</h4>
+                <p>55 Questions • 65 Mins • Standard 3 sections • No negative marking</p>
+                <button type="button" class="primary-btn" onclick="startMockTest('campus_placements')">
+                  Start Mock Test ⏱️
+                </button>
+              </div>
+              <div class="mock-card">
+                <div class="mock-badge">Govt Staff Selection</div>
+                <h4>SSC CGL / CHSL Tier-I</h4>
+                <p>75 Questions • 45 Mins • +2 marks / -0.50 negative marking</p>
+                <button type="button" class="primary-btn" onclick="startMockTest('ssc_cgl')">
+                  Start Mock Test ⏱️
+                </button>
+              </div>
+              <div class="mock-card">
+                <div class="mock-badge">Banking Prelims</div>
+                <h4>Banking (IBPS & SBI PO)</h4>
+                <p>100 Questions • 60 Mins • Sectional timer • -0.25 negative marking</p>
+                <button type="button" class="primary-btn" onclick="startMockTest('banking_ibps')">
+                  Start Mock Test ⏱️
+                </button>
+              </div>
+              <div class="mock-card">
+                <div class="mock-badge">Engineering</div>
+                <h4>GATE General Aptitude</h4>
+                <p>10 Questions • 20 Mins • Official 15-mark format • -0.33 negative marking</p>
+                <button type="button" class="primary-btn" onclick="startMockTest('gate_aptitude')">
+                  Start Mock Test ⏱️
+                </button>
+              </div>
+              <div class="mock-card">
+                <div class="mock-badge">Management</div>
+                <h4>CAT Quantitative & DILR</h4>
+                <p>24 Questions • 50 Mins • High difficulty • +3 / -1 negative marking</p>
+                <button type="button" class="primary-btn" onclick="startMockTest('cat_quant')">
+                  Start Mock Test ⏱️
+                </button>
+              </div>
+              <div class="mock-card">
+                <div class="mock-badge">Railways</div>
+                <h4>Railway Recruitment (RRB NTPC)</h4>
+                <p>60 Questions • 60 Mins • Math & Reasoning • -0.33 negative marking</p>
+                <button type="button" class="primary-btn" onclick="startMockTest('railways_rrb')">
+                  Start Mock Test ⏱️
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Test View -->
+          <div id="mockActiveTestView" class="hidden">
+            <div class="mock-test-topbar">
+              <div>
+                <h3 id="mockActiveTestTitle">Exam Name</h3>
+                <span id="mockActiveTestSubtitle" class="sub-muted">Details</span>
+              </div>
+              <div class="mock-timer-cluster">
+                <div id="mockTimerBadge" class="timer-display">⏱️ 00:00</div>
+                <button type="button" id="mockSubmitTestBtn" class="danger-btn">
+                  Finish & Submit Test
+                </button>
+              </div>
+            </div>
+
+            <div class="mock-test-layout">
+              <!-- Left: Question Workspace -->
+              <div class="mock-workspace">
+                <div class="mock-q-meta">
+                  <span id="mockQuestionNumberBadge" class="q-badge">Question 1</span>
+                  <span id="mockQuestionMarksBadge" class="marks-badge">+1.0 / -0.25</span>
+                  <span id="mockQuestionSubjectBadge" class="subject-badge">Subject</span>
+                </div>
+                <div class="mock-q-content">
+                  <h3 id="mockQuestionText" class="test-question-text">Loading question...</h3>
+                </div>
+                <div id="mockQuestionOptionsList" class="mock-options-container"></div>
+                <div class="mock-action-toolbar">
+                  <button type="button" id="mockPrevBtn" class="secondary-btn">← Previous</button>
+                  <button type="button" id="mockClearResponseBtn" class="secondary-btn">Clear Response</button>
+                  <button type="button" id="mockReviewNextBtn" class="secondary-btn review-btn">Mark for Review & Next</button>
+                  <button type="button" id="mockSaveNextBtn" class="primary-btn">Save & Next →</button>
+                </div>
+              </div>
+
+              <!-- Right: Question Palette -->
+              <div class="mock-palette-sidebar">
+                <h4>Question Palette</h4>
+                <div class="palette-legend">
+                  <div class="legend-item"><span class="legend-dot answered"></span> Answered (<span id="paletteAnsweredCount">0</span>)</div>
+                  <div class="legend-item"><span class="legend-dot review"></span> Marked for Review (<span id="paletteReviewCount">0</span>)</div>
+                  <div class="legend-item"><span class="legend-dot not_answered"></span> Unanswered (<span id="paletteUnansweredCount">0</span>)</div>
+                </div>
+                <div id="mockPaletteGrid" class="palette-grid"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Post-Test Result View -->
+          <div id="mockResultView" class="hidden">
+            <div class="result-score-card">
+              <span class="eyebrow">TEST COMPLETED</span>
+              <h2 id="resExamTitle">Mock Test Results</h2>
+              <div class="score-grid">
+                <div class="score-box">
+                  <span class="label">Total Score</span>
+                  <strong id="resScoreText">0.00 / 0.00</strong>
+                </div>
+                <div class="score-box">
+                  <span class="label">Accuracy</span>
+                  <strong id="resAccuracyText">0%</strong>
+                </div>
+                <div class="score-box">
+                  <span class="label">Time Taken</span>
+                  <strong id="resTimeTaken">0m 0s</strong>
+                </div>
+              </div>
+              <div class="score-counts-row">
+                <span class="count-pill correct">✓ Correct: <strong id="resCorrectCount">0</strong></span>
+                <span class="count-pill incorrect">✗ Incorrect: <strong id="resIncorrectCount">0</strong></span>
+                <span class="count-pill unattempted">○ Unattempted: <strong id="resUnattemptedCount">0</strong></span>
+              </div>
+            </div>
+
+            <!-- Section Analysis -->
+            <div class="panel">
+              <h3>Section-wise Breakdown</h3>
+              <table class="section-analysis-table">
+                <thead>
+                  <tr>
+                    <th>Section</th>
+                    <th>Attempted</th>
+                    <th>Correct</th>
+                    <th>Score</th>
+                    <th>Accuracy</th>
+                  </tr>
+                </thead>
+                <tbody id="resSectionTableBody"></tbody>
+              </table>
+            </div>
+
+            <!-- Detailed Question Review -->
+            <div class="panel">
+              <h3>Question-by-Question Review</h3>
+              <p>Review every question, check correct answers, and understand step-by-step derivations.</p>
+              <div id="resQuestionReviewList" class="review-questions-list"></div>
+            </div>
+
+            <button type="button" id="resReturnToSetupBtn" class="primary-btn full-btn">
+              ← Return to Mock Test Selection
+            </button>
+          </div>
+        </div>
+
+        <!-- SUBVIEW 4: PERFORMANCE & COACH -->
+        <div id="aptitudeTab_performance" class="aptitude-subview hidden">
+          <div class="coach-metrics-grid">
+            <div class="coach-metric-card">
+              <span class="metric-icon">🎯</span>
+              <div class="metric-info">
+                <span class="metric-label">Overall Accuracy</span>
+                <strong id="coachAccuracyMetric" class="metric-val">0%</strong>
+              </div>
+            </div>
+            <div class="coach-metric-card">
+              <span class="metric-icon">⚡</span>
+              <div class="metric-info">
+                <span class="metric-label">Avg Speed / Question</span>
+                <strong id="coachAvgTimeMetric" class="metric-val">--</strong>
+              </div>
+            </div>
+            <div class="coach-metric-card">
+              <span class="metric-icon">🏆</span>
+              <div class="metric-info">
+                <span class="metric-label">Mock Tests Completed</span>
+                <strong id="coachTestsCountMetric" class="metric-val">0</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Target Exam Settings -->
+          <div class="panel">
+            <h3>Target Exam & Goal Date</h3>
+            <p>Set your target competitive examination to align daily recommendations.</p>
+            <div class="coach-target-form">
+              <div class="field">
+                <label>Target Exam Profile:</label>
+                <select id="coachTargetExamSelect" class="select-control">
+                  <option value="campus_placements">Campus Placements & IT Drives</option>
+                  <option value="ssc_cgl">SSC CGL / CHSL Tier-I</option>
+                  <option value="banking_ibps">Banking (IBPS PO & SBI PO)</option>
+                  <option value="gate_aptitude">GATE General Aptitude</option>
+                  <option value="cat_quant">CAT Quantitative & DILR</option>
+                  <option value="railways_rrb">Railway Recruitment (RRB NTPC)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Target Exam Date:</label>
+                <input type="date" id="coachTargetDateInput" class="input-control" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Weak Topics Diagnosis -->
+          <div class="panel">
+            <h3>Weak Topics Diagnosis</h3>
+            <p>Topics with accuracy under 60% or marked with Low Confidence.</p>
+            <div id="coachWeakTopicsList" class="weak-topics-list"></div>
+          </div>
+
+          <!-- Daily Plan Generator -->
+          <div class="panel">
+            <h3>Personalized Aptitude Study Plan</h3>
+            <p>Generate a customized revision and practice roadmap based on your weak areas and timetable.</p>
+            <button type="button" id="coachGeneratePlanBtn" class="primary-btn">
+              Generate Today's Aptitude Plan ✦
+            </button>
+            <div id="coachPlanPreview" class="plan-preview-container"></div>
+          </div>
+
+          <!-- Mock Test History -->
+          <div class="panel">
+            <h3>Recent Mock Test History</h3>
+            <div id="coachTestHistoryList" class="test-history-list"></div>
+          </div>
+        </div>
+
+        <!-- SUBVIEW 5: MISTAKE NOTEBOOK -->
+        <div id="aptitudeTab_mistakes" class="aptitude-subview hidden">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">ACTIVE RECALL & SPACING</span>
+                <h3>Personal Mistake Notebook</h3>
+                <p>Questions answered incorrectly are saved here automatically. Review explanations, add notes, and build mastery streaks.</p>
+              </div>
+            </div>
+            <div id="mistakesListContainer" class="mistakes-container"></div>
+          </div>
+
+          <div class="panel">
+            <h3>Bookmarked Questions</h3>
+            <p>Key benchmark questions you have pinned for rapid revision.</p>
+            <div id="bookmarksListContainer" class="bookmarks-container"></div>
+          </div>
+        </div>
+
+        <!-- SUBVIEW 6: EXAM PROFILES -->
+        <div id="aptitudeTab_profiles" class="aptitude-subview hidden">
+          <div class="subview-header">
+            <div>
+              <h3>Official Competitive Examination Profiles</h3>
+              <p>Explore pattern details, syllabus structures, sectional distributions, and negative marking rules.</p>
+            </div>
+          </div>
+          <div id="examProfilesGrid" class="exam-profiles-grid"></div>
+        </div>
+
+        <!-- LESSON DRAWER / MODAL -->
+        <div id="aptitudeLessonModal" class="modal-backdrop hidden" aria-hidden="true">
+          <div class="lesson-modal-dialog">
+            <div class="modal-header">
+              <div>
+                <div class="badge-cluster">
+                  <span id="lessonModalSubject" class="subject-tag">Quantitative Aptitude</span>
+                  <span id="lessonModalDifficulty" class="badge">Beginner</span>
+                  <span id="lessonModalDuration" class="time-badge">30 mins</span>
+                </div>
+                <h2 id="lessonModalTitle">Topic Title</h2>
+                <span id="lessonPrerequisites" class="sub-muted">Prerequisites: None</span>
+              </div>
+              <button type="button" id="closeLessonModalBtn" class="close-modal-btn">✕</button>
+            </div>
+
+            <div class="lesson-modal-body">
+              <section class="lesson-section">
+                <h3>Concept & First Principles</h3>
+                <p id="lessonModalTheory" class="lesson-theory"></p>
+              </section>
+
+              <section class="lesson-section">
+                <h3>Key Formulas & Equations</h3>
+                <ul id="lessonFormulasList" class="formulas-list"></ul>
+              </section>
+
+              <section class="lesson-section">
+                <h3>⚡ Speed Shortcuts & Time-Saving Tactics</h3>
+                <div id="lessonShortcutsList" class="shortcuts-grid"></div>
+              </section>
+
+              <section class="lesson-section">
+                <h3>⚠️ Common Pitfalls & Traps</h3>
+                <ul id="lessonMistakesList" class="common-mistakes-list"></ul>
+              </section>
+
+              <section class="lesson-section">
+                <h3>Step-by-Step Worked Examples</h3>
+                <div id="lessonExamplesList" class="worked-examples-container"></div>
+              </section>
+
+              <div class="lesson-footer-controls">
+                <div class="confidence-selector">
+                  <span>Your Confidence:</span>
+                  <button type="button" class="confidence-pill" data-level="low">Low</button>
+                  <button type="button" class="confidence-pill" data-level="medium">Medium</button>
+                  <button type="button" class="confidence-pill" data-level="high">High</button>
+                </div>
+                <label class="completed-toggle">
+                  <input type="checkbox" id="lessonCompletedCheckbox" />
+                  <span>Mark Topic as Mastered</span>
+                </label>
+                <button type="button" id="lessonStartPracticeBtn" class="primary-btn">
+                  Start Practice Questions →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUBMIT CONFIRMATION MODAL -->
+        <div id="mockSubmitConfirmModal" class="modal-backdrop hidden" aria-hidden="true">
+          <div class="confirm-modal-dialog">
+            <h3>Ready to Submit Mock Test?</h3>
+            <p>Review your test attempt summary before finalizing submission:</p>
+            <div class="confirm-summary-grid">
+              <div class="summary-box">
+                <span class="label">Total Questions</span>
+                <strong id="confirmTotalQuestions">0</strong>
+              </div>
+              <div class="summary-box answered">
+                <span class="label">Answered</span>
+                <strong id="confirmAnsweredQuestions">0</strong>
+              </div>
+              <div class="summary-box review">
+                <span class="label">Marked for Review</span>
+                <strong id="confirmReviewQuestions">0</strong>
+              </div>
+              <div class="summary-box unans">
+                <span class="label">Unanswered</span>
+                <strong id="confirmUnansweredQuestions">0</strong>
+              </div>
+            </div>
+            <div class="confirm-actions">
+              <button type="button" id="cancelMockSubmitBtn" class="secondary-btn">
+                Continue Test
+              </button>
+              <button type="button" id="confirmMockSubmitBtn" class="danger-btn">
+                Confirm & Submit Test ✓
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ================= SETTINGS ================= -->
+
+      <section id="settingsSection" class="page-section">
+
+        <div class="topbar">
+
+          <div>
+            <span class="eyebrow">SETTINGS</span>
+            <h2>Make STUDYBOT work your way.</h2>
+            <p>Control planning and reminders.</p>
+          </div>
+
+        </div>
+
+
+        <div class="panel settings-panel">
+
+          <label class="setting-toggle">
+
+            <span>
+              <strong>Automatic planning</strong>
+              <small>Rebuild your plan when tasks change.</small>
+            </span>
+
+            <input type="checkbox" id="autoPlanningToggle" checked />
+
+          </label>
+
+
+          <label class="setting-toggle">
+
+            <span>
+              <strong>Browser reminders</strong>
+              <small>Allow STUDYBOT to show reminders.</small>
+            </span>
+
+            <input type="checkbox" id="reminderToggle" />
+
+          </label>
+
+
+          <label class="setting-toggle">
+
+            <span>
+              <strong>Gentle mode</strong>
+              <small>Use a less aggressive planning style.</small>
+            </span>
+
+            <input type="checkbox" id="gentleToggle" />
+
+          </label>
+
+
+          <div class="security-box">
+
+            <span>⚡</span>
+
+            <div>
+              <strong>Supabase Cloud Backend</strong>
+
+              <p>
+                STUDYBOT now connects to Supabase PostgreSQL database to safely persist and sync your profile, tasks, routines, and focus history across devices.
+              </p>
+
+            </div>
+
+          </div>
+
+          <!-- SUPABASE BACKEND CONFIGURATION -->
+          <div class="supabase-settings-card">
+            <div class="panel-header" style="margin-bottom: 10px;">
+              <div>
+                <span class="eyebrow">DATABASE SETTINGS</span>
+                <h3>Supabase Configuration</h3>
+                <p>Connect your Supabase project to enable real-time cloud backup.</p>
+              </div>
+            </div>
+
+            <div class="supabase-fields">
+              <label>Supabase Project URL</label>
+              <input
+                type="url"
+                id="supabaseUrlInput"
+                placeholder="https://your-project.supabase.co"
+              />
+
+              <label>Supabase Anon / Public API Key</label>
+              <input
+                type="password"
+                id="supabaseKeyInput"
+                placeholder="Enter Supabase anon public key"
+              />
+
+              <div class="supabase-actions">
+                <button type="button" id="saveSupabaseBtn" class="primary-btn">
+                  Save & Connect
+                </button>
+                <button type="button" id="testSupabaseBtn" class="secondary-btn">
+                  Test Connection
+                </button>
+                <button type="button" id="syncNowBtn" class="secondary-btn">
+                  Sync Data Now ☁️
+                </button>
+              </div>
+
+              <div id="supabaseFeedbackMsg" class="supabase-msg hidden"></div>
+            </div>
+          </div>
+
+          <button id="clearDataBtn" class="danger-btn">
+            Clear Planner Data
+          </button>
+
+        </div>
+
+
+        <!-- FEEDBACK -->
+
+        <div class="panel feedback-panel">
+
+          <div class="panel-header">
+
+            <div>
+              <span class="eyebrow">FEEDBACK</span>
+              <h3>Help improve STUDYBOT</h3>
+            </div>
+
+          </div>
+
+          <form id="feedbackForm">
+
+            <textarea
+              id="feedbackText"
+              rows="5"
+              placeholder="Tell me what would make this app more useful..."
+              required
+            ></textarea>
+
+            <button class="primary-btn">
+              Send Feedback
+            </button>
+
+          </form>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </section>
+
+
+  <!-- TOAST -->
+
+  <div id="toast" class="toast">
+    <span id="toastMessage">Saved</span>
+  </div>
+
+
+  <script src="supabase.js"></script>
+  <script src="supabaseConfig.js"></script>
+  <script src="aptitudeData.js"></script>
+  <script src="aptitudeEngine.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

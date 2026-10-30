@@ -1,0 +1,26 @@
+{
+  "name": "studybot",
+  "version": "1.0.0",
+  "description": "STUDYBOT — Smart Student Companion Mobile App",
+  "main": "script.js",
+  "scripts": {
+    "build": "node -e \"const fs=require('fs'); fs.mkdirSync('www',{recursive:true}); ['index.html','style.css','script.js','supabase.js','supabaseConfig.js','aptitudeData.js','aptitudeEngine.js'].forEach(f=>{ if(fs.existsSync(f)) fs.copyFileSync(f,'www/'+f); }); console.log('Assets copied to www/');\"",
+    "cap:sync": "npm run build && npx cap sync android",
+    "build:apk": "powershell -ExecutionPolicy Bypass -File ./build-apk.ps1"
+  },
+  "keywords": [
+    "studybot",
+    "student",
+    "android",
+    "capacitor"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/cli": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@supabase/server": "^1.9.0",
+    "@supabase/supabase-js": "^2.117.2"
+  }
+}
